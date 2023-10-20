@@ -34,13 +34,12 @@ class _MyHomePageState extends State<MyHomePage> {
               tooltip: 'Decrement',
               child: const Icon(Icons.remove),
             ),
-          ],
+            FloatingActionButton(
+              onPressed: _incrementCounter,
+              tooltip: 'Increment',
+              child: const Icon(Icons.add),
+            ), ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
