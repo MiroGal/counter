@@ -29,6 +29,11 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            FloatingActionButton(
+              onPressed: _decrementCounter,
+              tooltip: 'Decrement',
+              child: const Icon(Icons.remove),
+            ),
           ],
         ),
       ),
@@ -43,6 +48,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
     setState(() {
       _counter = _counter + 1;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      _counter = _counter - 1;
     });
   }
 }
