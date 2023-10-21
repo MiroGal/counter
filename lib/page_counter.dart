@@ -6,7 +6,9 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() {
+    return _MyHomePageState();
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -27,30 +29,38 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24),
-              child: Row(
-                children: [
-                  const SizedBox(width: 24),
-                  FloatingActionButton(
-                    onPressed: _decrementCounter,
-                    tooltip: 'Decrement',
-                    child: const Icon(Icons.remove),
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 80,
                   ),
-                  const Spacer(),
-                  FloatingActionButton(
-                    onPressed: _incrementCounter,
-                    tooltip: 'Increment',
-                    child: const Icon(Icons.add),
-                  ),
-                  const SizedBox(width: 24),
-                ],
-              ),
             ),
+            _buildButtons(context),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildButtons(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 24, right: 24),
+      child: Row(
+        children: [
+          const SizedBox(width: 24),
+          FloatingActionButton(
+            onPressed: _decrementCounter,
+            tooltip: 'Decrement',
+            child: const Icon(Icons.remove),
+          ),
+          const Spacer(),
+          FloatingActionButton(
+            onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+          const SizedBox(width: 24),
+        ],
       ),
     );
   }
@@ -62,8 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _decrementCounter() {
-    setState(() {
-      _counter = _counter - 1;
-    });
+    final int newValue = _counter - 1;
+    if (newValue >= 0) {
+      setState(() {
+        _counter = newValue;
+      });
+    }
   }
 }
