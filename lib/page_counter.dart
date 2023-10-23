@@ -24,13 +24,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              _setCounterLabelText(),
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: _setCounterColor(),
+                    color: _setCounterValueColor(),
                     fontWeight: FontWeight.bold,
                     fontSize: 80,
                   ),
@@ -65,7 +65,19 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Color _setCounterColor() {
+  String _setCounterLabelText() {
+    if (_counter == 0) {
+      return 'You Died';
+    } else if (_counter <= 10) {
+      return 'You Are In Danger';
+    } else if (_counter >= 11 && _counter <= 30) {
+      return 'Meh';
+    } else {
+      return 'Everything Is Ok';
+    }
+  }
+
+  Color _setCounterValueColor() {
     if (_counter <= 10) {
       return Colors.red;
     } else if (_counter >= 11 && _counter <= 30) {
