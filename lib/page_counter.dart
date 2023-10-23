@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: Colors.green,
+                    color: _setCounterColor(),
                     fontWeight: FontWeight.bold,
                     fontSize: 80,
                   ),
@@ -63,6 +63,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+  }
+
+  Color _setCounterColor() {
+    if (_counter <= 10) {
+      return Colors.red;
+    } else if (_counter >= 11 && _counter <= 30) {
+      return Colors.orange;
+    } else {
+      return Colors.green;
+    }
   }
 
   void _incrementCounter() {
