@@ -66,9 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _incrementCounter() {
-    setState(() {
-      _counter = _counter + 1;
-    });
+    final int newValue = _counter + 1;
+    if (newValue <= 50) {
+      setState(() {
+        _counter = _counter + 1;
+      });
+    }
   }
 
   void _decrementCounter() {
