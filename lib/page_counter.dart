@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+const int _maxCount = 50;
+const int _minCount = 0;
+
+const int _countStep1 = 10;
+const int _countStep2 = 30;
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -44,10 +50,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildButtons(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24, right: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 48),
       child: Row(
         children: [
-          const SizedBox(width: 24),
           FloatingActionButton(
             onPressed: _decrementCounter,
             tooltip: 'Decrement',
@@ -59,18 +64,17 @@ class _MyHomePageState extends State<MyHomePage> {
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
-          const SizedBox(width: 24),
         ],
       ),
     );
   }
 
   String _setCounterLabelText() {
-    if (_counter == 0) {
+    if (_counter == _minCount) {
       return 'You Died';
-    } else if (_counter <= 10) {
+    } else if (_counter <= _countStep1) {
       return 'You Are In Danger';
-    } else if (_counter >= 11 && _counter <= 30) {
+    } else if (_counter > _countStep1 && _counter <= _countStep2) {
       return 'Meh';
     } else {
       return 'Everything Is Ok';
@@ -78,9 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Color _setCounterValueColor() {
-    if (_counter <= 10) {
+    if (_counter <= _countStep1) {
       return Colors.red;
-    } else if (_counter >= 11 && _counter <= 30) {
+    } else if (_counter > _countStep1 && _counter <= _countStep2) {
       return Colors.orange;
     } else {
       return Colors.green;
@@ -89,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     final int newValue = _counter + 1;
-    if (newValue <= 50) {
+    if (newValue <= _maxCount) {
       setState(() {
         _counter = _counter + 1;
       });
@@ -98,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _decrementCounter() {
     final int newValue = _counter - 1;
-    if (newValue >= 0) {
+    if (newValue >= _minCount) {
       setState(() {
         _counter = newValue;
       });
