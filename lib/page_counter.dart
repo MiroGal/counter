@@ -1,3 +1,4 @@
+import 'package:counter/app_icons.dart';
 import 'package:flutter/material.dart';
 
 const int _maxCount = 50;
@@ -35,13 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               _setCounterLabelText(),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: _setCounterValueColor(),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 80,
-                  ),
+            SizedBox(
+              height: 100,
+              child: _counterValue(),
             ),
             _buildButtons(
               context,
@@ -52,6 +49,25 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  Widget _counterValue() {
+    if (_counter == _minCount) {
+      return const Icon(
+        AppIcons.skull,
+        size: 80,
+        color: Colors.red,
+      );
+    } else {
+      return Text(
+        '$_counter',
+        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+              color: _setCounterValueColor(),
+              fontWeight: FontWeight.bold,
+              fontSize: 80,
+            ),
+      );
+    }
   }
 
   Widget _buildButtons(
